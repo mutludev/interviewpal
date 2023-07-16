@@ -36,4 +36,17 @@ router.put('/:jobId', ensureSession, async (req, res) => {
   res.send(job)
 })
 
+router.delete('/:jobId', ensureSession, async (req, res) => {
+  const job = req.user.jobs.filter(job => job._id == req.params.jobId)[0]
+  if(!job) return res.status(404).send('Job not found')
+  req.user.jobs = req.user.jobs.filter(job => job._id != req.params.jobId)
+  try{
+    await req.user.save()
+  } catch (err) {
+    const firstErrorMessage = err.errors[Object.keys(err.errors)[0]].message
+    return res.status(400).send(firstErrorMessage)
+  }
+  res.send(job)
+})
+
 module.exports = router
