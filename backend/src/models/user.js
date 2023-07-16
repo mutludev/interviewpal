@@ -5,9 +5,13 @@ const user = new mongoose.Schema({
   name: String,
   email: {
     type: String,
+    required: true,
     unique: true
   },
-  password: String,
+  password: {
+      type: String,
+      required: true
+  },
   jobs: [jobSchema],
   documents: [{
     type: mongoose.Schema.Types.ObjectId,
