@@ -7,7 +7,7 @@ router.get('/', ensureSession , async (req, res) => {
 })
 
 router.get('/:jobId', ensureSession, async (req, res) => {
-  const job = req.user.jobs.filter(job => job._id == req.params.jobId)[0]
+  const job = req.user.jobs.find(job => job._id.equals(req.params.jobId))
   if(!job) res.status(404).send('Job not found')
   res.send(job)
 })
@@ -24,7 +24,7 @@ router.post('/', ensureSession, async (req, res) => {
 })
 
 router.put('/:jobId', ensureSession, async (req, res) => {
-  const job = req.user.jobs.filter(job => job._id == req.params.jobId)[0]
+  const job = req.user.jobs.find(job => job._id.equals(req.params.jobId))
   if(!job) return res.status(404).send('Job not found')
   Object.assign(job, req.body)
   try{
@@ -37,7 +37,7 @@ router.put('/:jobId', ensureSession, async (req, res) => {
 })
 
 router.delete('/:jobId', ensureSession, async (req, res) => {
-  const job = req.user.jobs.filter(job => job._id == req.params.jobId)[0]
+  const job = req.user.jobs.find(job => job._id.equals(req.params.jobId))
   if(!job) return res.status(404).send('Job not found')
   req.user.jobs = req.user.jobs.filter(job => job._id != req.params.jobId)
   try{
