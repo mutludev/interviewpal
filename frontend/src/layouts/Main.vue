@@ -26,12 +26,6 @@ import SidebarSection from '@/layouts/SidebarSection.vue'
   padding: 20px;
 }
 
-#sidebar {
-  width: 200px;
-  background-color: #1b1b1b;
-  color: #fff;
-}
-
 #content {
   display: flex;
   flex-grow: 1;
