@@ -9,9 +9,14 @@ let sidebar = useSidebarStore()
 <template>
   <div id='sidebar' :hidden='!sidebar.isOpen'>
     <div class='header'>
-      SideBar
+      <span>Interview Tracker</span>
       <sidebar-toggle-button/>
     </div>
+
+    <ul class='links'>
+      <li><router-link to='/'>Interviews</router-link></li>
+      <li><router-link to='/documents'>Documents</router-link></li>
+    </ul>
 
   </div>
 </template>
@@ -29,6 +34,17 @@ let sidebar = useSidebarStore()
     justify-content: space-between;
     align-items: center;
     padding-right: 8px;
+}
+
+.links {
+    list-style: none;
+    padding-top: 50px;
+}
+
+.links li a {
+    text-decoration: none;
+    color: #b3b3b3;
+
 }
 
 </style>
