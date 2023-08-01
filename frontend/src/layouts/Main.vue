@@ -1,13 +1,17 @@
 <script setup>
+import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
+import { useSidebarStore } from '@/stores/useSidebarStore'
 import SidebarSection from '@/layouts/SidebarSection.vue'
 
+let sidebar = useSidebarStore()
 </script>
 
 <template>
   <div id='main'>
     <sidebar-section />
     <div id="content">
-      <div class='top'>
+      <div class='top' v-if='!sidebar.isOpen'>
+        <sidebar-toggle-button/>
         Top Nav
       </div>
       <div class='main'>
@@ -43,7 +47,9 @@ import SidebarSection from '@/layouts/SidebarSection.vue'
 }
 
 #content .top {
-  padding-bottom: 16px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
 }
 
 </style>
