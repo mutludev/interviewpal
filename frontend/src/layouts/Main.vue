@@ -2,7 +2,8 @@
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 import { useSidebarStore } from '@/stores/useSidebarStore'
 import SidebarSection from '@/layouts/SidebarSection.vue'
-let sidebar = useSidebarStore()
+
+const sidebar = useSidebarStore()
 </script>
 
 <template>
@@ -11,7 +12,7 @@ let sidebar = useSidebarStore()
     <div id="content">
       <div class='top' v-if='!sidebar.isOpen'>
         <sidebar-toggle-button/>
-        Top Nav
+        <span>Top Nav</span>
       </div>
       <div class='main'>
         <router-view/>

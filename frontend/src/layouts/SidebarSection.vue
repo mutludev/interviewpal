@@ -1,5 +1,4 @@
 <script setup>
-
 import { useSidebarStore } from '@/stores/useSidebarStore'
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 
