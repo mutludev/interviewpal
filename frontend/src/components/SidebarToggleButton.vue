@@ -1,6 +1,6 @@
 <script setup>
 import { useSidebarStore } from '@/stores/useSidebarStore'
-let sidebar = useSidebarStore()
+const sidebar = useSidebarStore()
 </script>
 
 <template>
@@ -13,6 +13,7 @@ let sidebar = useSidebarStore()
 <style scoped>
 .sidebar-toggle-button {
     border: none;
+    border-radius: 4px;
     background: inherit;
     cursor: pointer;
     color: #666666;
@@ -20,6 +21,9 @@ let sidebar = useSidebarStore()
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.sidebar-toggle-button:hover {
+    background-color: #222222;
 }
 
 .sidebar-icon {
