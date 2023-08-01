@@ -5,5 +5,5 @@ import 'primeicons/primeicons.css';
 </script>
 
 <template>
-  <Main/>
+  <router-view/>
 </template>
