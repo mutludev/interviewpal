@@ -1,12 +1,11 @@
 <script setup>
+import SidebarSection from '@/layouts/SidebarSection.vue'
 
 </script>
 
 <template>
   <div id='main'>
-    <div id="sidebar">
-      SideBar
-    </div>
+    <sidebar-section />
     <div id="content">
       <div class='top'>
         Top Nav
