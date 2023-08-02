@@ -1,8 +1,10 @@
 <script setup>
 import { useSidebarStore } from '@/stores/useSidebarStore'
+import { useAuthStore} from '@/stores/useAuthStore'
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 
 let sidebar = useSidebarStore()
+let auth = useAuthStore()
 </script>
 
 <template>
@@ -20,7 +22,7 @@ let sidebar = useSidebarStore()
     <div class='spacer'/>
     <ul class='links'>
       <li><router-link to='/me'>My Account</router-link></li>
-      <li><router-link to='/logout'>Logout</router-link></li>
+      <li><a href='#' @click.prevent='auth.logout'>Logout</a></li>
     </ul>
   </div>
 </template>
