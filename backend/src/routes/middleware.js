@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 
 async function setUser(req, res, next) {
   req.user = null
-  if(mongoose.Types.ObjectId.isValid(req.query.userId)){
-    req.user = await User.findById(req.query.userId)
+  console.log(req.authSession)
+  if(req.authSession && req.authSession.userId) {
+    req.user = await User.findById(req.authSession.userId)
   }
   next()
 }
