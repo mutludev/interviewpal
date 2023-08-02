@@ -1,13 +1,19 @@
 <script setup>
-
+import { useAuthStore } from '@/stores/useAuthStore'
+import { ref } from 'vue'
+let email = ref('')
+let password = ref('')
+async function login(){
+  await useAuthStore().login(email.value, password.value)
+}
 </script>
 
 <template>
   <div class='login-wrapper'>
     <span class='login-text'>Sign in</span>
-    <input type="email" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <button class='login-btn'>Login</button>
+    <input type="email" v-model='email' placeholder="Email" />
+    <input type="password" v-model='password' placeholder="Password" />
+    <button @click='login' class='login-btn'>Login</button>
   </div>
 </template>
 
