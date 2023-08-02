@@ -13,21 +13,18 @@ const router = createRouter({
           name: 'Interviews',
           // @ts-ignore
           component: () => import('@/pages/Interviews.vue'),
-          props: { title: 'Interviews' }
         },
         {
           path: 'documents',
           name: 'Documents',
           // @ts-ignore
           component: () => import('@/pages/Documents.vue'),
-          props: { title: 'Documents' }
         },
         {
           path: 'me',
           name: 'Me',
           // @ts-ignore
           component: () => import('@/pages/Me.vue'),
-          props: { title: 'Me' }
         }
       ]
     },
