@@ -11,5 +11,5 @@ authStore.getUser().finally(() => {
 
 <template>
   <router-view/>
-  <login-modal v-if='!authStore.isLoggedIn && isCheckedAuth.value'/>
+  <login-modal v-if='!authStore.isLoggedIn && isCheckedAuth'/>
 </template>
