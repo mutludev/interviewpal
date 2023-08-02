@@ -6,7 +6,7 @@ let sidebar = useSidebarStore()
 </script>
 
 <template>
-  <div id='sidebar' :hidden='!sidebar.isOpen'>
+  <div id='sidebar' v-if='sidebar.isOpen'>
     <div class='header'>
       <span>Interview Tracker</span>
       <sidebar-toggle-button/>
@@ -17,6 +17,11 @@ let sidebar = useSidebarStore()
       <li><router-link to='/documents'>Documents</router-link></li>
     </ul>
 
+    <div class='spacer'/>
+    <ul class='links'>
+      <li><router-link to='/me'>My Account</router-link></li>
+      <li><router-link to='/logout'>Logout</router-link></li>
+    </ul>
   </div>
 </template>
 
@@ -26,6 +31,8 @@ let sidebar = useSidebarStore()
     width: 200px;
     background-color: #1b1b1b;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 #sidebar .header {
@@ -40,10 +47,24 @@ let sidebar = useSidebarStore()
     padding-top: 50px;
 }
 
+.links li {
+    padding: 3px 2px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.links li:hover {
+    background-color: #2b2b2b;
+}
+
 .links li a {
     text-decoration: none;
     color: #b3b3b3;
 
+}
+
+.spacer {
+    flex-grow: 1;
 }
 
 </style>
