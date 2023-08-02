@@ -2,7 +2,7 @@
 ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
 
-# Interview Tracker - Intervio
+# Interview Tracker - InterviewPal
 
 
 
@@ -97,7 +97,7 @@ If you have any feedback, please reach out to us at baris@mutlu.dev
 
 ## License
 
-[MIT License](https://github.com/mutludev/interview-tracker/blob/master/LICENSE)
+[MIT License](https://github.com/mutludev/interviewpal/blob/master/LICENSE)
 
 Copyright (c) 2023 Baris Mutlu
 
