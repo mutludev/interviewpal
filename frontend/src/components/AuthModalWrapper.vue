@@ -1,10 +1,14 @@
 <script setup>
 import AuthModal from '@/components/AuthModal.vue'
+import { useAuthStore } from '@/stores/useAuthStore'
+const authStore = useAuthStore()
 </script>
 
 <template>
 <div class='modal-bg'>
-  <auth-modal/>
+  <a-spin :spinning='authStore.isLoading'>
+    <auth-modal/>
+  </a-spin>
 </div>
 </template>
 
