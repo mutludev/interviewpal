@@ -58,4 +58,9 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.post('/logout', async (req, res) => {
+  req.authSession.userId = null
+  res.send({ message: 'Logged out' })
+})
+
 module.exports = router
