@@ -1,14 +1,21 @@
 <script setup>
-
+import { useAuthStore } from '@/stores/useAuthStore'
+import { ref } from 'vue'
+let name = ref('')
+let email = ref('')
+let password = ref('')
+async function register(){
+  await useAuthStore().register(name.value, email.value, password.value)
+}
 </script>
 
 <template>
   <div class='register-wrapper'>
     <span class='register-text'>Create an account</span>
-    <input type="text" placeholder="Username" />
-    <input type="email" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <button class='register-btn'>Register</button>
+    <input type="text" v-model='name' placeholder="Username" />
+    <input type="email" v-model='email' placeholder="Email" />
+    <input type="password" v-model='password' placeholder="Password" />
+    <button class='register-btn' @click='register'>Register</button>
   </div>
 </template>
 
