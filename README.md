@@ -13,11 +13,12 @@ Coming soon
 
 ## Features
 
-- Coming Soon
-- Coming Soon
-- Coming Soon
-- Coming Soon
-
+- 🍪 Cookie based authentication
+- 📝 Manage interviews (Not implemented yet)
+- 📅 Calendar view (Not implemented yet)
+- 📊 Dashboard (Not implemented yet)
+- 📧 Email notifications (Not implemented yet)
+- 📱 Responsive design and more...
 
 ## Tech Stack
 
