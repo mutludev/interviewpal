@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
   })
   try {
     const result = await user.save()
+    req.authSession.userId = user._id
     res.send({ user: result })
   } catch (error) {
     res.status(400).send(error.message)
