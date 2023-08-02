@@ -1,5 +1,5 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](https://github.com/mutludev/interviewpal/assets/43097444/7788f8ef-c7da-41eb-acfe-504b3b5c6b1e)
 
 
 # Interview Tracker - InterviewPal
