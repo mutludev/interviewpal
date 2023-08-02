@@ -40,11 +40,13 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({email: req.body.email })
     if(!user) {
+      req.authSession.userId = null
       throw new Error('Invalid login credentials')
     }
     console.log(req.body.password, user.password)
     const isPasswordMatch = await compare(req.body.password, user.password)
     if(!isPasswordMatch) {
+      req.authSession.userId = null
       throw new Error('Invalid login credentials')
     }
     req.authSession.userId = user._id
