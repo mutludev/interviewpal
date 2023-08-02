@@ -35,4 +35,24 @@ router.put('/', ensureSession, async (req, res) => {
   }
 })
 
+router.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({email: req.body.email })
+    if(!user) {
+      throw new Error('Invalid login credentials')
+    }
+    console.log(req.body.password, user.password)
+    const isPasswordMatch = await compare(req.body.password, user.password)
+    if(!isPasswordMatch) {
+      throw new Error('Invalid login credentials')
+    }
+    req.authSession.userId = user._id
+    return res.send({
+      user
+    })
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+})
+
 module.exports = router
