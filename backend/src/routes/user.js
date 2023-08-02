@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const { compare, hash } = require('bcrypt')
 
 const { ensureSession } = require('./middleware')
 
@@ -10,10 +11,11 @@ router.get('/', ensureSession , async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-const user = new User({
+  const passwordHash = await hash(req.body.password, 10)
+  const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password: passwordHash
   })
   try {
     const result = await user.save()
