@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', {
         this.user = res.data.user
         return this.user
       } catch(err) {
-        console.log(err)
+        return false
       } finally {
         this.loading = false
       }
