@@ -1,18 +1,42 @@
 <script setup>
 import { useAuthStore } from '@/stores/useAuthStore'
+import { message } from 'ant-design-vue';
 import { ref } from 'vue'
 let email = ref('')
 let password = ref('')
+let emailEmpty = ref(false)
+let passwordEmpty = ref(false)
 async function login(){
-  await useAuthStore().login(email.value, password.value)
+  const emailFilled = email.value.trim().length !== 0
+  const passwordFilled = password.value.trim().length !== 0
+  if(emailFilled && passwordFilled){
+    emailEmpty.value = false
+    passwordEmpty.value = false
+  } else if (!emailFilled && !passwordFilled){
+    emailEmpty.value = true
+    passwordEmpty.value = true
+    return message.error('Email and password are required')
+  } else if (!emailFilled){
+    emailEmpty.value = true
+    passwordEmpty.value = false
+    return message.error('Email is required')
+  } else if (!passwordFilled){
+    passwordEmpty.value = true
+    emailEmpty.value = false
+    return message.error('Password is required')
+  }
+  let response = await useAuthStore().login(email.value, password.value)
+  if(!response){
+    message.error('Invalid credentials')
+  }
 }
 </script>
 
 <template>
   <div class='login-wrapper'>
     <span class='login-text'>Sign in</span>
-    <input type="email" v-model='email' placeholder="Email" />
-    <input type="password" v-model='password' placeholder="Password" />
+    <input :class='emailEmpty ? "error" : ""' type="email" v-model='email' placeholder="Email" />
+    <input :class='passwordEmpty ? "error" : ""' type="password" v-model='password' placeholder="Password" />
     <button @click='login' class='login-btn'>Login</button>
   </div>
 </template>
@@ -34,6 +58,10 @@ async function login(){
 
 .login-wrapper > * {
     margin-bottom: 16px;
+}
+
+.error {
+    border: 1px solid red !important;
 }
 
 .login-wrapper input {
