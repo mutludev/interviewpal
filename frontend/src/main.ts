@@ -7,6 +7,9 @@ import '@/assets/base.css'
 import 'primeicons/primeicons.css'
 import 'ant-design-vue/dist/reset.css';
 import Antd from 'ant-design-vue';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
+
 
 
 const pinia = createPinia()
@@ -15,5 +18,6 @@ const app = createApp(App)
 app.use(router)
 app.use(pinia)
 app.use(Antd)
+app.component('EasyDataTable',Vue3EasyDataTable)
 
 app.mount('#app')
