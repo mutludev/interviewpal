@@ -37,14 +37,14 @@ const route = useRoute()
   flex-grow: 1;
   flex-direction: column;
   color: #fff;
-
+  overflow: auto;
 }
 
 #content .main {
   background-color: #171717;
   border: 1px solid rgb(41, 41, 41);
   border-radius: 8px;
-  padding: 16px;
+  padding: 8px;
   flex-grow: 1;
 }
 
