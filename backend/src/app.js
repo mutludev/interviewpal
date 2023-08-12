@@ -4,15 +4,12 @@ const fileUpload = require('express-fileupload');
 const { setUser } = require('./routes/middleware')
 const sessions = require("client-sessions");
 const dotenv = require('dotenv')
+const cors = require('cors')
 dotenv.config()
 
 
 const app = express()
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://interviewpal.netlify.app/"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors())
 app.use(sessions({
     cookieName: 'authSession', // cookie name dictates the key name added to the request object
     secret: process.env.SESSION_SECRET, // should be a large unguessable string
