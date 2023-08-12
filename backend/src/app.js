@@ -11,6 +11,7 @@ dotenv.config()
 const app = express()
 app.use(cors({
     origin: 'https://interviewpal.netlify.app',
+    credentials: true
 }))
 app.use(sessions({
     cookieName: 'authSession', // cookie name dictates the key name added to the request object
