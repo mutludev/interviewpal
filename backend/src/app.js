@@ -9,7 +9,9 @@ dotenv.config()
 
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: 'https://interviewpal.netlify.app/',
+}))
 app.use(sessions({
     cookieName: 'authSession', // cookie name dictates the key name added to the request object
     secret: process.env.SESSION_SECRET, // should be a large unguessable string
