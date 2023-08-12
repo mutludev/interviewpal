@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:3000/api/user'
+let host = import.meta.env.prod ? 'http://159.65.223.82:3000/' : 'http://localhost:3000'
+axios.defaults.baseURL = host + '/api/user'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
