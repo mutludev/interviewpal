@@ -1,8 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-axios.defaults.withCredentials = true
-let host = import.meta.env.VITE_HOST || 'http://localhost:3000'
-axios.defaults.baseURL = host + '/api/user'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -13,7 +10,7 @@ export const useAuthStore = defineStore('auth', {
     async login(email, password) {
       this.loading = true
       try{
-        const res = await axios.post('/login', {
+        const res = await axios.post('/api/user/login', {
           email,
           password
         })
@@ -28,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
     async logout() {
       this.user = null
       try {
-        await axios.post('/logout')
+        await axios.post('/api/user/logout')
       } catch(err) {
         console.log(err)
       }
@@ -36,7 +33,7 @@ export const useAuthStore = defineStore('auth', {
     async register(username, email, password) {
       this.loading = true
       try {
-        const res = await axios.post('/', {
+        const res = await axios.post('/api/user/', {
           username,
           email,
           password
@@ -52,7 +49,7 @@ export const useAuthStore = defineStore('auth', {
     async getUser() {
       this.loading = true
       try {
-        const res = await axios.get('/')
+        const res = await axios.get('/api/user/')
         this.user = res.data
         return this.user
       } catch(err) {
