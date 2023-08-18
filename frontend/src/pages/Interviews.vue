@@ -41,6 +41,7 @@ onMounted(() => {
   </a>
 
   <div class='job-table'>
+    <a-spin :spinning='interviewStore.getLoading'>
     <EasyDataTable
       buttons-pagination
       hide-footer
@@ -58,6 +59,7 @@ onMounted(() => {
         </div>
       </template>
     </EasyDataTable>
+    </a-spin>
   </div>
 </template>
 
