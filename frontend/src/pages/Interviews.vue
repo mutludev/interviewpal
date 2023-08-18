@@ -6,7 +6,6 @@ const interviewStore = useInterviewStore()
 function getURLHost(url){
   try{
     const urlObject = new URL(url)
-    console.log(urlObject)
     return urlObject.host
   } catch {
     return url
