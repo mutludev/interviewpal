@@ -32,7 +32,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <a href='#' @click.prevent='createNewJob'>Create new job</a>
+  <a href='#' class="action-btn" @click.prevent='createNewJob'>
+    <span class="pi pi-plus" />
+     <span>Create new job</span>
+  </a>
+  <a href='#' class="action-btn" @click.prevent='interviewStore.fetchInterviews'>
+    <span :class="`pi pi-spinner ${interviewStore.isLoading ? 'pi-spin' : ''}`" />
+    <span>Refresh</span>
+  </a>
+
   <div class='job-table'>
     <EasyDataTable
       buttons-pagination
@@ -57,6 +65,29 @@ onMounted(() => {
 <style scoped>
 .job-url {
     color: #fff;
+}
+
+.action-btn {
+    color: #818181;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #818181;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.action-btn:not(:last-child) {
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    background-color: #1e1e1e;
+}
+
+.action-btn span:last-child {
+  margin-left: 4px;
 }
 
 .interviews-table {
