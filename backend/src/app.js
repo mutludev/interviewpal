@@ -10,7 +10,7 @@ dotenv.config()
 
 const app = express()
 app.use(cors({
-    origin: 'https://interviewpal.netlify.app',
+    origin: 'https://interviewpal.mutlu.dev',
     credentials: true
 }))
 app.use(sessions({
