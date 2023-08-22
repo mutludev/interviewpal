@@ -5,7 +5,7 @@
 # Interview Tracker - InterviewPal
 
 
-## [Demo](https://interviewpal.netlify.app)
+## [Demo](https://interviewpal.mutlu.dev)
 
 
 ## Features
