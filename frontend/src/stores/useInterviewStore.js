@@ -20,6 +20,13 @@ export const useInterviewStore = defineStore('interview',{
       clearInterviews() {
         this.interviews = []
       },
+      async addInterview(interview) {
+        try {
+          const response = await axios.post('/api/job/', interview);
+          this.fetchInterviews();
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
     getters: {
