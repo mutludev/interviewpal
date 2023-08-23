@@ -1,11 +1,15 @@
 <script setup>
 import { useAuthStore } from '@/stores/useAuthStore'
 import { ref } from 'vue'
+import { message } from 'ant-design-vue';
 let name = ref('')
 let email = ref('')
 let password = ref('')
 async function register(){
-  await useAuthStore().register(name.value, email.value, password.value)
+  let response = await useAuthStore().register(name.value, email.value, password.value)
+  if(response == undefined) {
+    message.error("Unexpected error occured")
+  }
 }
 </script>
 
