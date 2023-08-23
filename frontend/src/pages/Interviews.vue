@@ -66,6 +66,7 @@ onMounted(() => {
 <style scoped>
 .job-url {
     color: #fff;
+    text-decoration: underline;
 }
 
 .action-btn {
