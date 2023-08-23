@@ -34,7 +34,7 @@ let auth = useAuthStore()
 }
 
 #sidebar {
-    width: 200px;
+    min-width: 200px;
     background-color: #1b1b1b;
     color: #fff;
     display: flex;
