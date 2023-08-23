@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useInterviewStore } from '@/stores/useInterviewStore'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -8,6 +9,7 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     async login(email, password) {
+      const interviewStore = useInterviewStore()
       this.loading = true
       try{
         const res = await axios.post('/api/user/login', {
@@ -15,6 +17,7 @@ export const useAuthStore = defineStore('auth', {
           password
         })
         this.user = res.data.user
+        interviewStore.fetchInterviews()
         return this.user
       } catch(err) {
         return false
