@@ -26,9 +26,11 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     async logout() {
+      const interviewStore = useInterviewStore()
       this.user = null
       try {
         await axios.post('/api/user/logout')
+        interviewStore.clearInterviews()
       } catch(err) {
         console.log(err)
       }
