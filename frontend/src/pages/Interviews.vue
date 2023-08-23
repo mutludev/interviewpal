@@ -36,7 +36,7 @@ onMounted(() => {
      <span>Create new job</span>
   </a>
   <a href='#' class="action-btn" @click.prevent='interviewStore.fetchInterviews'>
-    <span :class="`pi pi-spinner ${interviewStore.isLoading ? 'pi-spin' : ''}`" />
+    <span :class="`pi pi-sync ${interviewStore.isLoading ? 'pi-spin' : ''}`" />
     <span>Refresh</span>
   </a>
 
