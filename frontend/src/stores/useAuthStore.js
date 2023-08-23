@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import router from '@/router'
 import { useInterviewStore } from '@/stores/useInterviewStore'
 
 export const useAuthStore = defineStore('auth', {
@@ -31,6 +32,7 @@ export const useAuthStore = defineStore('auth', {
       try {
         await axios.post('/api/user/logout')
         interviewStore.clearInterviews()
+        await router.push('/')
       } catch(err) {
         console.log(err)
       }
