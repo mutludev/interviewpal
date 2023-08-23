@@ -16,6 +16,10 @@ export const useInterviewStore = defineStore('interview',{
         } finally {
           this.isLoading = false;
         }
+      },
+      clearInterviews() {
+        this.interviews = []
+      },
       }
     },
     getters: {
