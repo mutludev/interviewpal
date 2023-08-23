@@ -10,7 +10,7 @@ let auth = useAuthStore()
 <template>
   <div id='sidebar' v-if='sidebar.isOpen'>
     <div class='header'>
-      <span>Interview Tracker</span>
+      <router-link class='company-text' to='/'>Interview Tracker</router-link>
       <sidebar-toggle-button/>
     </div>
 
@@ -28,6 +28,10 @@ let auth = useAuthStore()
 </template>
 
 <style scoped>
+.company-text {
+    color: white;
+    text-decoration: none;
+}
 
 #sidebar {
     width: 200px;
