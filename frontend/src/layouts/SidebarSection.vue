@@ -54,9 +54,15 @@ let auth = useAuthStore()
 }
 
 .links li {
-    padding: 3px 2px;
     margin-right: 20px;
     border-radius: 5px;
+}
+
+.links li a {
+  display: inline-block;
+  width: 100%;
+  height: 25px;
+  padding: 3px 2px;
 }
 
 .links li:hover {
