@@ -1,7 +1,9 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useInterviewStore } from '@/stores/useInterviewStore'
+import { useInterviewModalStore } from '@/stores/useInterviewModalStore';
 const interviewStore = useInterviewStore()
+const interviewModalStore = useInterviewModalStore()
 
 function getURLHost(url){
   try{
@@ -13,7 +15,7 @@ function getURLHost(url){
 }
 
 function createNewJob(){
-  interviewStore.createInterview()
+  interviewModalStore.openModal()
 }
 
 const headers = [
