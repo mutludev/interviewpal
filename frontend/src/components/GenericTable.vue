@@ -28,6 +28,7 @@ th {
   font-weight: bold;
   padding: 10px 0px;
   border-bottom: 1px solid #ddd;
+  min-width: 100px;
 }
 
 td {
