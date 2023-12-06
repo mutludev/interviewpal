@@ -32,6 +32,14 @@ const isLogin = ref(true)
   padding: 20px;
 }
 
+@media (max-width: 600px) {
+  .modal {
+    min-width: 100vw;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+}
+
 .auth-switcher {
   background-color: transparent;
   border: none;
