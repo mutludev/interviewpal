@@ -41,6 +41,13 @@ let auth = useAuthStore()
     flex-direction: column;
 }
 
+@media screen and (max-width: 650px) {
+    #sidebar {
+        min-width: none;
+        width: 100%;
+    }
+}
+
 #sidebar .header {
     display: flex;
     justify-content: space-between;

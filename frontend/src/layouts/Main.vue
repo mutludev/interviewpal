@@ -11,7 +11,7 @@ const route = useRoute()
 <template>
   <div id='main'>
     <sidebar-section />
-    <div id="content">
+    <div :class="`content ${sidebar.isOpen ? 'content-collapse' : ''}`">
       <div class='top' v-if='!sidebar.isOpen'>
         <sidebar-toggle-button/>
         <span>{{ route.name || "Intervio" }}</span>
@@ -32,7 +32,7 @@ const route = useRoute()
   padding: 20px;
 }
 
-#content {
+.content {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -40,7 +40,13 @@ const route = useRoute()
   overflow: auto;
 }
 
-#content .main {
+@media screen and (max-width: 650px) {
+  .content-collapse {
+    display: none;
+  }
+}
+
+.content .main {
   background-color: #171717;
   border: 1px solid rgb(41, 41, 41);
   border-radius: 8px;
@@ -48,7 +54,7 @@ const route = useRoute()
   flex-grow: 1;
 }
 
-#content .top {
+.content .top {
   padding-bottom: 8px;
   display: flex;
   align-items: center;
