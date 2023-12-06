@@ -37,6 +37,7 @@ const isLogin = ref(true)
     min-width: 100vw;
     min-height: 100vh;
     border-radius: 0;
+    justify-content: space-around;
   }
 }
 
