@@ -59,6 +59,10 @@ onMounted(() => {
     text-decoration: underline;
 }
 
+.job-table {
+ overflow: auto; 
+}
+
 .action-btn {
     color: #818181;
     text-decoration: none;
