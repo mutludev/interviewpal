@@ -8,8 +8,6 @@ import '@/assets/base.css'
 import 'primeicons/primeicons.css'
 import 'ant-design-vue/dist/reset.css';
 import Antd from 'ant-design-vue';
-import Vue3EasyDataTable from 'vue3-easy-data-table';
-import 'vue3-easy-data-table/dist/style.css';
 
 axios.defaults.baseURL = import.meta.env.VITE_HOST || 'http://localhost:3000'
 axios.defaults.withCredentials = true;
@@ -20,6 +18,5 @@ const app = createApp(App)
 app.use(router)
 app.use(pinia)
 app.use(Antd)
-app.component('EasyDataTable',Vue3EasyDataTable)
 
 app.mount('#app')
