@@ -27,7 +27,7 @@ const route = useRoute()
 #main {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 100svh;
   background-color: #1b1b1b;
   padding: 20px;
 }
