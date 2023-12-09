@@ -13,6 +13,7 @@ app.use(cors({
     origin: 'https://interviewpal.mutlu.dev',
     credentials: true
 }))
+app.options('*', cors()) // include before other routes
 app.use(sessions({
     cookieName: 'authSession', // cookie name dictates the key name added to the request object
     secret: process.env.SESSION_SECRET, // should be a large unguessable string
