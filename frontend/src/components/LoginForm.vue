@@ -1,11 +1,15 @@
 <script setup>
 import { useAuthStore } from '@/stores/useAuthStore'
 import { message } from 'ant-design-vue';
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 let email = ref('')
+let emailField = ref(null)
 let password = ref('')
 let emailEmpty = ref(false)
 let passwordEmpty = ref(false)
+onMounted(() => {
+  emailField.value.focus()
+})
 async function login(){
   const emailFilled = email.value.trim().length !== 0
   const passwordFilled = password.value.trim().length !== 0
@@ -35,7 +39,7 @@ async function login(){
 <template>
   <div class='login-wrapper'>
     <span class='login-text'>Sign in</span>
-    <input :class='emailEmpty ? "error" : ""' type="email" v-model='email' placeholder="Email" />
+    <input id="email" :class='emailEmpty ? "error" : ""' type="email" v-model='email' ref="emailField" placeholder="Email" />
     <input :class='passwordEmpty ? "error" : ""' type="password" v-model='password' placeholder="Password" />
     <button @click='login' class='login-btn'>Login</button>
   </div>
