@@ -40,7 +40,7 @@ async function login(){
   <div class='login-wrapper'>
     <span class='login-text'>Sign in</span>
     <input id="email" :class='emailEmpty ? "error" : ""' type="email" v-model='email' ref="emailField" placeholder="Email" />
-    <input :class='passwordEmpty ? "error" : ""' type="password" v-model='password' placeholder="Password" />
+    <input :class='passwordEmpty ? "error" : ""' type="password" v-model='password' ref="passwordField" v-on:keyup.enter="login" placeholder="Password" />
     <button @click='login' class='login-btn'>Login</button>
   </div>
 </template>
