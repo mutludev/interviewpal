@@ -35,6 +35,14 @@ export const useInterviewStore = defineStore('interview',{
         } catch (error) {
           console.log(error);
         }
+      },
+      async deleteInterview(id) {
+        try {
+          const response = await axios.delete(`/api/job/${id}/`);
+          this.fetchInterviews();
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
     getters: {

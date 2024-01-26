@@ -43,7 +43,7 @@ onMounted(() => {
                             <span class="pi pi-pencil" />
                             <span>Edit</span>
                         </a>
-                        <a href='#' class="action-btn">
+                        <a href='#' class="action-btn" @click="interviewStore.deleteInterview(item._id)">
                             <span class="pi pi-trash" />
                             <span>Delete</span>
                         </a>
