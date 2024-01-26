@@ -27,6 +27,14 @@ export const useInterviewStore = defineStore('interview',{
         } catch (error) {
           console.log(error);
         }
+      },
+      async updateInterview(interview) {
+        try {
+          const response = await axios.put(`/api/job/${interview._id}/`, interview);
+          this.fetchInterviews();
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
     getters: {
