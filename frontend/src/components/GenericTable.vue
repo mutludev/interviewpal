@@ -12,6 +12,7 @@
     <tr v-for="item in items" :key="item.id">
       <td v-for="header in headers" :key="header.value">
         {{ item[header.value] }}
+        <slot name="body" :column="header.value" :item="item" ></slot>
       </td>
     </tr>
   </table>
