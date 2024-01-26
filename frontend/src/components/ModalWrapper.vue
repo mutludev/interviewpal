@@ -1,11 +1,9 @@
-<script setup>
-import InterviewModal from '@/components/InterviewModal.vue'
-</script>
-
 <template>
-    <div class='modal-bg'>
-        <interview-modal/>
-    </div>
+  <Teleport to='body'>
+  <div class='modal-bg'>
+    <slot></slot>
+  </div>
+  </Teleport>
 </template>
 
 <style scoped>

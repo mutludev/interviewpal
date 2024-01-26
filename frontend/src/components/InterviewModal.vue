@@ -19,6 +19,7 @@
 
 
 <template>
+  <modal-wrapper>
     <div class="interview-modal">
       <div class="header">
         <a-input class="company" v-model:value="company" placeholder="Company" />
@@ -37,6 +38,7 @@
         <a-button type="primary" @click="save">Save</a-button>
       </div>
     </div>
+  </modal-wrapper>
 </template>
 
 <style scoped> 

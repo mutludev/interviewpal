@@ -2,12 +2,16 @@
 import LoginForm from '@/components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue'
 import { ref } from 'vue'
-
+import { useAuthStore } from '@/stores/useAuthStore';
+import ModalWrapper from './ModalWrapper.vue';
 const isLogin = ref(true)
+const authStore = useAuthStore()
 </script>
 
 <template>
-  <div class='modal'>
+  <modal-wrapper>
+  <a-spin :spinning='authStore.isLoading'>
+    <div class='modal'>
     <div class='greeting'>Welcome the Intervio</div>
     <login-form v-if="isLogin" />
     <register-form v-else />
@@ -16,7 +20,8 @@ const isLogin = ref(true)
       {{ isLogin ? "Don't have an account" : 'Have an account' }}
     </button>
   </div>
-
+  </a-spin>
+  </modal-wrapper>
 </template>
 
 <style scoped>

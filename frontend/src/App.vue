@@ -1,10 +1,7 @@
 <script setup>
-import LoginModal from '@/components/AuthModalWrapper.vue'
-import InterviewModal from '@/components/InterviewModalWrapper.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/useAuthStore'
-import { useInterviewModalStore } from './stores/useInterviewModalStore'
-const interviewModalStore = useInterviewModalStore()
+import AuthModal from './components/AuthModal.vue'
 const authStore = useAuthStore()
 const isCheckedAuth = ref(false)
 authStore.getUser().finally(() => {
@@ -14,6 +11,5 @@ authStore.getUser().finally(() => {
 
 <template>
   <router-view/>
-  <login-modal v-if='!authStore.isLoggedIn && isCheckedAuth'/>
-  <interview-modal v-if="interviewModalStore.getIsOpen" />
+  <AuthModal v-if='!authStore.isLoggedIn && isCheckedAuth'/>
 </template>
