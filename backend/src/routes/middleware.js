@@ -1,5 +1,4 @@
 const User = require('../models/user')
-const mongoose = require('mongoose')
 
 async function setUser(req, res, next) {
   req.user = null

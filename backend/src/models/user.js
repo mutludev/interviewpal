@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const jobSchema = require("./jobSchema");
-const Document = require('./document')
 
 const user = new mongoose.Schema({
   name: String,
