@@ -43,10 +43,12 @@ onMounted(() => {
                             <span class="pi pi-pencil" />
                             <span>Edit</span>
                         </a>
-                        <a href='#' class="action-btn" @click="interviewStore.deleteInterview(item._id)">
+                        <a-popconfirm title="Delete?" @confirm="interviewStore.deleteInterview(item._id)">
+                        <a href='#' class="action-btn">
                             <span class="pi pi-trash" />
                             <span>Delete</span>
                         </a>
+                        </a-popconfirm>
                     </template>
                 </template>
             </GenericTable>
