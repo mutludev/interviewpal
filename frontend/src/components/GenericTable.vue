@@ -27,13 +27,13 @@ table {
 
 th {
   font-weight: bold;
-  padding: 10px 0px;
+  padding: 10px 5px;
   border-bottom: 1px solid #ddd;
   min-width: 100px;
 }
 
 td {
-  padding: 10px 0px;
+  padding: 10px 5px;
   border-bottom: 1px solid #787878;
 }
 </style>
