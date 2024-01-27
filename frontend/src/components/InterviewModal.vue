@@ -65,6 +65,30 @@
     transform: translate(-50%, -50%);
   }
 
+  @media (max-width: 700px) {
+  .interview-modal {
+    width: 100%;
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    
+  }
+
+  .interview-modal .header input {
+    width: 100% !important;
+  }
+
+  .interview-modal .footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+
+}
+
   .interview-modal .header {
     display: flex;
     flex-direction: column;
