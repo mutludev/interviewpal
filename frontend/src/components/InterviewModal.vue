@@ -14,7 +14,6 @@
   const activeKey = ref('1')
 
   async function save() {
-    console.log(data.value)
     if (!data.value.hasOwnProperty('_id')) {
       await interviewStore.addInterview(data.value)
     } else {
@@ -36,14 +35,15 @@
         <a-input class="title" v-model:value="data.title" placeholder="Job Title" />
       </div>
       <a-tabs class="tab-pane" v-model:activeKey="activeKey">
-        <a-tab-pane key="1" tab="General">General</a-tab-pane>
-        <a-tab-pane key="2" tab="Notes">
-          <a-textarea rows=4 v-model:value="data.notes" />
+        <a-tab-pane key="1" tab="General">
+          <a-space direction="vertical" style="width: 100%;">
+            <a-input v-model:value="data.url" placeholder="Url" />
+            <a-textarea rows=2 v-model:value="data.description" placeholder="Description" />
+          </a-space>
         </a-tab-pane>
-        <a-tab-pane key="3" tab="Contacts">Contacts</a-tab-pane>
-        <a-tab-pane key="4" tab="Documents">Documents</a-tab-pane>
-        <a-tab-pane key="5" tab="Actions">Actions</a-tab-pane>
-
+        <a-tab-pane key="2" tab="Notes">
+          <a-textarea rows=4 v-model:value="data.notes" placeholder="Notes" />
+        </a-tab-pane>
       </a-tabs>
       <div class="footer">
         <a-button @click="emit('close')">Cancel</a-button>
@@ -55,7 +55,8 @@
 
 <style scoped> 
   .interview-modal {
-    background-color: #fff;
+    background-color: #171717;
+    border: 1px solid #303030;
     border-radius: 4px;
     padding: 20px;
     width: 700px;
