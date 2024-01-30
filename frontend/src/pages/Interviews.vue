@@ -11,9 +11,6 @@ const interviewModalStore = useInterviewModalStore()
 const headers = [
     { text: "Company", value: "company" },
     { text: "Title", value: "title" },
-    { text: "Url", value: "url" },
-    { text: "Salary", value: "salary" },
-    { text: "Location", value: "location" },
     { text: "Deadline", value: "deadline" },
     { text: "Latest Action", value: "latest-action" },
     { text: "Actions", value: "actions" }
