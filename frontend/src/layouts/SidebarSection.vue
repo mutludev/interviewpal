@@ -5,6 +5,19 @@ import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 
 let sidebar = useSidebarStore()
 let auth = useAuthStore()
+
+
+sidebar.$subscribe((modify ,state) => {
+  if (state.open && window.innerWidth <= 650) {
+    const aTags = document.querySelectorAll('#sidebar a')
+    aTags.forEach(a => {
+      a.addEventListener('click', () => {
+        sidebar.close()
+      })
+    })
+  }
+})
+
 </script>
 
 <template>
