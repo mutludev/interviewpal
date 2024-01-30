@@ -1,6 +1,8 @@
 <script setup>
   import ModalWrapper from './ModalWrapper.vue';
   import { ref, defineEmits } from 'vue'
+  import { DatePicker } from 'ant-design-vue';
+  import dayjs from 'dayjs'
   
   import { useInterviewStore } from '@/stores/useInterviewStore';
   import { useInterviewModalStore } from '@/stores/useInterviewModalStore';
@@ -12,8 +14,10 @@
   const data = ref(interviewModalStore.content ? interviewModalStore.content : {})  
 
   const activeKey = ref('1')
+  let deadline = ref(dayjs(data.value.deadline))
 
   async function save() {
+    data.value.deadline = dayjs(deadline.value).format('YYYY-MM-DD')
     if (!data.value.hasOwnProperty('_id')) {
       await interviewStore.addInterview(data.value)
     } else {
@@ -37,7 +41,10 @@
       <a-tabs class="tab-pane" v-model:activeKey="activeKey">
         <a-tab-pane key="1" tab="General">
           <a-space direction="vertical" style="width: 100%;">
-            <a-input v-model:value="data.url" placeholder="Url" />
+            <div class="first-input-stack">
+              <a-input v-model:value="data.url" placeholder="Url" />
+              <date-picker class="date-picker" v-model:value="deadline" format="DD/MM/YYYY"/>
+            </div>
             <a-textarea rows=2 v-model:value="data.description" placeholder="Description" />
           </a-space>
         </a-tab-pane>
@@ -114,4 +121,14 @@
   .interview-modal .footer button {
     margin-inline-start: 10px;
   }
+
+  .first-input-stack {
+    display: flex;
+    gap: 10px;
+  }
+
+  .date-picker {
+    min-width: 200px;
+  }
+
 </style>

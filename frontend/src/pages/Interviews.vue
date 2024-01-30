@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import InterviewModal from '@/components/InterviewModal.vue';
 import GenericTable from '@/components/GenericTable.vue';
+import dayjs from 'dayjs'
 
 import { useInterviewStore } from '@/stores/useInterviewStore'
 import { useInterviewModalStore } from '@/stores/useInterviewModalStore'
@@ -11,7 +12,7 @@ const interviewModalStore = useInterviewModalStore()
 const headers = [
     { text: "Company", value: "company" },
     { text: "Title", value: "title" },
-    { text: "Deadline", value: "deadline" },
+    { text: "Deadline", value: "deadline-dummy" },
     { text: "Latest Action", value: "latest-action" },
     { text: "Actions", value: "actions" }
 ];
@@ -48,6 +49,9 @@ onMounted(() => {
                             <span>Delete</span>
                         </a>
                         </a-popconfirm>
+                    </template>
+                    <template v-else-if="column == 'deadline-dummy'">
+                        {{ dayjs(item.deadline).format("DD-MM-YYYY") }}
                     </template>
                 </template>
             </GenericTable>
