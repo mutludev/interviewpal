@@ -6,11 +6,12 @@ const sessions = require("client-sessions");
 const dotenv = require('dotenv')
 const cors = require('cors')
 dotenv.config()
-
+const production = process.env.NODE_ENV === 'production'
 
 const app = express()
+const origin = production ? process.env.FRONTEND_ORIGIN : 'http://localhost:5173'
 app.use(cors({
-    origin: 'https://interviewpal.mutlu.dev',
+    origin,
     credentials: true
 }))
 app.options('*', cors()) // include before other routes
