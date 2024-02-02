@@ -3,6 +3,8 @@ import { onMounted } from 'vue'
 import InterviewModal from '@/components/InterviewModal.vue';
 import GenericTable from '@/components/GenericTable.vue';
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 import { useInterviewStore } from '@/stores/useInterviewStore'
 import { useInterviewModalStore } from '@/stores/useInterviewModalStore'
@@ -51,7 +53,7 @@ onMounted(() => {
                         </a-popconfirm>
                     </template>
                     <template v-else-if="column == 'deadline-dummy'">
-                        {{ dayjs(item.deadline).format("DD-MM-YYYY") }}
+                        {{ dayjs(item.deadline).fromNow() }}
                     </template>
                 </template>
             </GenericTable>
