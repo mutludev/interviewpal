@@ -11,7 +11,7 @@
 ## Features
 
 - 🍪 Cookie based authentication
-- 📝 Manage interviews (Not implemented yet)
+- 📝 Manage interviews 
 - 📅 Calendar view (Not implemented yet)
 - 📊 Dashboard (Not implemented yet)
 - 📧 Email notifications (Not implemented yet)
@@ -36,13 +36,13 @@ Coming Soon...
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/mutludev/interviewpal
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd interviewpal
 ```
 
 Install dependencies
@@ -51,12 +51,19 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the frontend server
 
 ```bash
-  npm run start
+  cd frontend
+  npm run dev
 ```
 
+Start the frontend server
+
+```bash
+  cd backend
+  npm run start
+```
 
 ## Deployment
 
@@ -77,6 +84,7 @@ To run this project, you will need to add the following environment variables to
 
 `SESSION_SECRET`
 
+`FRONTEND_ORIGIN`
 
 ## Lessons Learned
 
