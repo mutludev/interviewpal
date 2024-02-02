@@ -41,6 +41,10 @@ onMounted(() => {
             <GenericTable :headers="headers" :items="interviewStore.getInterviews">
                 <template #body="{ column, item }">
                     <template v-if="column == 'actions'">
+                        <a :href='item.url' class="action-btn" :class="{disabled: item.url == undefined}" target="_blank">
+                            <span class="pi pi-link" />
+                            <span>Link</span>
+                        </a>
                         <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
                             <span class="pi pi-pencil" />
                             <span>Edit</span>
@@ -90,6 +94,10 @@ onMounted(() => {
     padding: 4px;
     border-radius: 4px;
     font-size: 14px;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
 
 .action-btn:not(:last-child) {
