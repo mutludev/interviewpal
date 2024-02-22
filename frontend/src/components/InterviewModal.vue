@@ -28,6 +28,11 @@
     }
     interviewModalStore.closeModal()
   }
+
+  async function deleteInterview(id) {
+    await interviewStore.deleteInterview(id)
+    interviewModalStore.closeModal()
+  }
 </script>
 
 
@@ -53,6 +58,9 @@
         </a-tab-pane>
       </a-tabs>
       <div class="footer">
+        <a-popconfirm v-if="interviewModalStore.content != undefined" title="Delete?" @confirm="deleteInterview(data._id)">
+          <a-button danger>Delete</a-button>
+        </a-popconfirm>
         <a-button @click="emit('close')">Cancel</a-button>
         <a-button type="primary" @click="save">Save</a-button>
       </div>
