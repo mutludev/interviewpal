@@ -13,7 +13,7 @@ const interviewModalStore = useInterviewModalStore()
 
 const headers = [
     { text: "Company", value: "company" },
-    { text: "Title", value: "title" },
+    { text: "Title", value: "title-dummy" },
     { text: "Deadline", value: "deadline-dummy" },
     { text: "Latest Action", value: "latest-action" },
     { text: "Actions", value: "actions" }
@@ -41,10 +41,6 @@ onMounted(() => {
             <GenericTable :headers="headers" :items="interviewStore.getInterviews">
                 <template #body="{ column, item }">
                     <template v-if="column == 'actions'">
-                        <a :href='item.url' class="action-btn" :class="{disabled: item.url == undefined}" target="_blank">
-                            <span class="pi pi-link" />
-                            <span>Link</span>
-                        </a>
                         <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
                             <span class="pi pi-pencil" />
                             <span>Edit</span>
@@ -52,6 +48,10 @@ onMounted(() => {
                     </template>
                     <template v-else-if="column == 'deadline-dummy'">
                         {{ dayjs(item.deadline).fromNow() }}
+                    </template>
+                    <template v-else-if="column == 'title-dummy'">
+                        <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
+                        <span v-else>{{ item.title  }}</span>
                     </template>
                 </template>
             </GenericTable>
@@ -72,6 +72,10 @@ onMounted(() => {
 .job-url {
     color: #fff;
     text-decoration: underline;
+}
+
+a {
+    color: #fff;
 }
 
 .job-table {
