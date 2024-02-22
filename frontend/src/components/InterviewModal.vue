@@ -22,7 +22,7 @@
       await interviewStore.addInterview(data.value)
     } else {
       await interviewStore.updateInterview({
-        id: data._id,
+        id: data.value._id,
         ...data.value
       })
     }
