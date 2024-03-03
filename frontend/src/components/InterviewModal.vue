@@ -3,6 +3,12 @@
   import { ref, defineEmits } from 'vue'
   import { DatePicker } from 'ant-design-vue';
   import dayjs from 'dayjs'
+  const interviewStatusOptions = [
+    { label: 'Wishlist⭐️', value: 'wishlist' },
+    { label: 'Applied👏🏻', value: 'applied' },
+    { label: 'Rejected❌', value: 'rejected' },
+    { label: 'Accepted✅', value: 'accepted' }
+  ]
   
   import { useInterviewStore } from '@/stores/useInterviewStore';
   import { useInterviewModalStore } from '@/stores/useInterviewModalStore';
@@ -40,6 +46,7 @@
   <modal-wrapper>
     <div class="interview-modal">
       <div class="header">
+        <a-select v-model:value="data.status" style="width: 120px" :options="interviewStatusOptions" placeholder="Status"></a-select>
         <a-input class="company" v-model:value="data.company" placeholder="Company" />
         <a-input class="title" v-model:value="data.title" placeholder="Job Title" />
       </div>
