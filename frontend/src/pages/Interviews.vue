@@ -43,7 +43,6 @@ onMounted(() => {
                     <template v-if="column == 'actions'">
                         <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
                             <span class="pi pi-pencil" />
-                            <span>Edit</span>
                         </a>
                     </template>
                     <template v-else-if="column == 'deadline-dummy'">
@@ -108,5 +107,9 @@ a {
 
 .action-btn span:last-child {
     margin-left: 4px;
+}
+
+.action-btn span:only-child {
+    margin: 0px;
 }
 </style>
