@@ -11,6 +11,14 @@ import { useInterviewModalStore } from '@/stores/useInterviewModalStore'
 const interviewStore = useInterviewStore()
 const interviewModalStore = useInterviewModalStore()
 
+const interviewStatusToEmoji = {
+    wishlist: 'Wishlist⭐️️',
+    applied: 'Applied👏🏻',
+    rejected: 'Rejected❌',
+    accepted: 'Accepted✅'
+
+}
+
 const headers = [
     { text: "Company", value: "company" },
     { text: "Title", value: "title-dummy" },
@@ -51,6 +59,9 @@ onMounted(() => {
                     <template v-else-if="column == 'title-dummy'">
                         <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
                         <span v-else>{{ item.title  }}</span>
+                    </template>
+                    <template v-else-if="column == 'latest-action'">
+                        {{ interviewStatusToEmoji[item.status] }}
                     </template>
                 </template>
             </GenericTable>
