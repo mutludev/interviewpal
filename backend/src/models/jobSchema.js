@@ -10,6 +10,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: [true,"Title is required"]
     },
+    status: ['wishlist' , 'applied' , 'rejected' , 'accepted'],
     url: String,
     description: String,
     notes: String,
