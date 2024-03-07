@@ -16,7 +16,6 @@ const interviewStatusToEmoji = {
     applied: 'Applied👏🏻',
     rejected: 'Rejected❌',
     accepted: 'Accepted✅'
-
 }
 
 const headers = [
@@ -47,22 +46,20 @@ onMounted(() => {
     <div class='job-table'>
         <a-spin :spinning='interviewStore.getLoading'>
             <GenericTable :headers="headers" :items="interviewStore.getInterviews">
-                <template #body="{ column, item }">
-                    <template v-if="column == 'actions'">
-                        <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
-                            <span class="pi pi-pencil" />
-                        </a>
-                    </template>
-                    <template v-else-if="column == 'deadline-dummy'">
-                        {{ dayjs(item.deadline).fromNow() }}
-                    </template>
-                    <template v-else-if="column == 'title-dummy'">
-                        <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
-                        <span v-else>{{ item.title  }}</span>
-                    </template>
-                    <template v-else-if="column == 'latest-action'">
-                        {{ interviewStatusToEmoji[item.status] }}
-                    </template>
+                <template #actions="{item}">
+                    <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
+                        <span class="pi pi-pencil" />
+                    </a>
+                </template>
+                <template #deadline-dummy="{item}">
+                    {{ dayjs(item.deadline).fromNow() }}
+                </template>
+                <template #title-dummy="{item}">
+                    <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
+                    <span v-else>{{ item.title  }}</span>
+                </template>
+                <template #latest-action="{item}">
+                    {{ interviewStatusToEmoji[item.status] }}
                 </template>
             </GenericTable>
         </a-spin>
