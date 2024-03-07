@@ -20,8 +20,8 @@ const interviewStatusToEmoji = {
 
 const headers = [
     { text: "Company", value: "company" },
-    { text: "Title", value: "title-dummy" },
-    { text: "Deadline", value: "deadline-dummy" },
+    { text: "Title", value: "title" },
+    { text: "Deadline", value: "deadline" },
     { text: "Latest Action", value: "latest-action" },
     { text: "Actions", value: "actions" }
 ];
@@ -51,10 +51,10 @@ onMounted(() => {
                         <span class="pi pi-pencil" />
                     </a>
                 </template>
-                <template #deadline-dummy="{item}">
+                <template #deadline="{item}">
                     {{ dayjs(item.deadline).fromNow() }}
                 </template>
-                <template #title-dummy="{item}">
+                <template #title="{item}">
                     <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
                     <span v-else>{{ item.title  }}</span>
                 </template>
