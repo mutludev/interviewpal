@@ -24,7 +24,7 @@
 
   async function save() {
     data.value.deadline = dayjs(deadline.value).format('YYYY-MM-DD')
-    if (!data.value.hasOwnProperty('_id')) {
+    if (!Object.hasOwn(data.value, '_id')) {
       await interviewStore.addInterview(data.value)
     } else {
       await interviewStore.updateInterview({
