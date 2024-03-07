@@ -1,6 +1,6 @@
 <script setup>
-import { useSidebarStore } from '@/stores/useSidebarStore'
-import { useAuthStore} from '@/stores/useAuthStore'
+import { useSidebarStore } from '@/stores/SidebarStore'
+import { useAuthStore} from '@/stores/AuthStore'
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 
 let sidebar = useSidebarStore()

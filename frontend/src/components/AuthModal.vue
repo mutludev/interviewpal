@@ -2,7 +2,7 @@
 import LoginForm from '@/components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue'
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/useAuthStore';
+import { useAuthStore } from '@/stores/AuthStore';
 import ModalWrapper from './ModalWrapper.vue';
 const isLogin = ref(true)
 const authStore = useAuthStore()

@@ -6,8 +6,8 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
-import { useInterviewStore } from '@/stores/useInterviewStore'
-import { useInterviewModalStore } from '@/stores/useInterviewModalStore'
+import { useInterviewStore } from '@/stores/InterviewStore'
+import { useInterviewModalStore } from '@/stores/InterviewModalStore'
 const interviewStore = useInterviewStore()
 const interviewModalStore = useInterviewModalStore()
 

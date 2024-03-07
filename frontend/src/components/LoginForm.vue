@@ -1,5 +1,5 @@
 <script setup>
-import { useAuthStore } from '@/stores/useAuthStore'
+import { useAuthStore } from '@/stores/AuthStore'
 import { message } from 'ant-design-vue';
 import { ref, onMounted } from 'vue'
 let email = ref('')

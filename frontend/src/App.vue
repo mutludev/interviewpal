@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/useAuthStore'
+import { useAuthStore } from '@/stores/AuthStore'
 import AuthModal from './components/AuthModal.vue'
 import { theme } from './config/theme'
 const authStore = useAuthStore()

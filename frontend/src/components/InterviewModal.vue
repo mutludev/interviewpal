@@ -10,8 +10,8 @@
     { label: 'Accepted✅', value: 'accepted' }
   ]
   
-  import { useInterviewStore } from '@/stores/useInterviewStore';
-  import { useInterviewModalStore } from '@/stores/useInterviewModalStore';
+  import { useInterviewStore } from '@/stores/InterviewStore';
+  import { useInterviewModalStore } from '@/stores/InterviewModalStore';
   const interviewModalStore = useInterviewModalStore()
   const interviewStore = useInterviewStore()
 

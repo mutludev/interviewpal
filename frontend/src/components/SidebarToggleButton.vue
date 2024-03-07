@@ -1,5 +1,5 @@
 <script setup>
-import { useSidebarStore } from '@/stores/useSidebarStore'
+import { useSidebarStore } from '@/stores/SidebarStore'
 const sidebar = useSidebarStore()
 </script>
 
