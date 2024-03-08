@@ -17,7 +17,11 @@ const jobSchema = new mongoose.Schema({
     url: String,
     description: String,
     notes: String,
-    deadline: Date
+    deadline: Date,
+    todos: [{
+        value: String,
+        check: Boolean,
+    }],
 })
 
 module.exports = jobSchema
