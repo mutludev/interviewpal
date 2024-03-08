@@ -19,21 +19,26 @@
   const emit = defineEmits(['close'])
 
   const data = ref(interviewModalStore.content ? interviewModalStore.content : {})  
-
+  const saving = ref(false)
   const activeKey = ref('1')
   let deadline = ref(dayjs(data.value.deadline))
 
   async function save() {
-    data.value.deadline = dayjs(deadline.value).format('YYYY-MM-DD')
-    if (!Object.hasOwn(data.value, '_id')) {
-      await interviewStore.addInterview(data.value)
-    } else {
-      await interviewStore.updateInterview({
-        id: data.value._id,
-        ...data.value
-      })
+    try {
+      saving.value = true
+      data.value.deadline = dayjs(deadline.value).format('YYYY-MM-DD')
+      if (!Object.hasOwn(data.value, '_id')) {
+        await interviewStore.addInterview(data.value)
+      } else {
+        await interviewStore.updateInterview({
+          id: data.value._id,
+          ...data.value
+        })
+      }
+      interviewModalStore.closeModal()
+    } finally {
+      saving.value = false
     }
-    interviewModalStore.closeModal()
   }
 
   async function deleteInterview(id) {
@@ -91,7 +96,7 @@
           <a-button danger>Delete</a-button>
         </a-popconfirm>
         <a-button @click="emit('close')">Cancel</a-button>
-        <a-button type="primary" @click="save">Save</a-button>
+        <a-button type="primary" @click="save" :loading="saving" :disabled="saving">Save</a-button>
       </div>
     </div>
   </modal-wrapper>
