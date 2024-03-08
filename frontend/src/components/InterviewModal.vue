@@ -1,5 +1,6 @@
 <script setup>
   import ModalWrapper from './ModalWrapper.vue';
+  import EditableCheckbox from './EditableCheckbox.vue';
   import { ref, defineEmits } from 'vue'
   import { DatePicker } from 'ant-design-vue';
   import dayjs from 'dayjs'
@@ -39,7 +40,16 @@
     await interviewStore.deleteInterview(id)
     interviewModalStore.closeModal()
   }
-</script>
+
+  function addNewTodo() {
+    if(data.value.todos) {
+      data.value.todos.push({value: '', check: false})
+    } else {
+      data.value.todos = [{value: '', check: false}]
+    }
+  }
+
+  </script>
 
 
 <template>
@@ -63,6 +73,18 @@
         <a-tab-pane key="2" tab="Notes">
           <a-textarea rows=4 v-model:value="data.notes" placeholder="Notes" />
         </a-tab-pane>
+        <a-tab-pane key="3" tab="Todos">
+          <a-space direction="vertical" style="width: 100%;">
+          <editable-checkbox 
+            v-for="(todo, index) in data.todos"
+            v-bind:key="index"
+            v-model:value="todo.value" 
+            v-model:check="todo.check" 
+            @delete="() => data.todos.splice(index, 1)"
+          />
+          <a-button style="width: 100%;" @click="addNewTodo">New Todo</a-button>
+          </a-space>  
+      </a-tab-pane>
       </a-tabs>
       <div class="footer">
         <a-popconfirm v-if="interviewModalStore.content != undefined" title="Delete?" @confirm="deleteInterview(data._id)">
