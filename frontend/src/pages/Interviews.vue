@@ -1,7 +1,9 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, h } from 'vue'
+import { PlusOutlined, ReloadOutlined, EditOutlined } from '@ant-design/icons-vue';
 import InterviewModal from '@/components/InterviewModal.vue';
 import GenericTable from '@/components/GenericTable.vue';
+
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -33,37 +35,29 @@ onMounted(() => {
 
 <template>
     <div class="job-pane">
-    <div>
-        <a href='#' class="action-btn" @click.prevent='interviewModalStore.openModal()'>
-            <span class="pi pi-plus" />
-            <span>Create new job</span>
-        </a>
-        <a href='#' class="action-btn" @click.prevent='interviewStore.fetchInterviews'>
-            <span :class="`pi pi-sync ${interviewStore.isLoading ? 'pi-spin' : ''}`" />
-            <span>Refresh</span>
-        </a>
-    </div>
-    <div class='job-table'>
-        <a-spin :spinning='interviewStore.getLoading'>
-            <GenericTable :headers="headers" :items="interviewStore.getInterviews">
-                <template #actions="{item}">
-                    <a href='#' class="action-btn" @click="interviewModalStore.openModal(item)">
-                        <span class="pi pi-pencil" />
-                    </a>
-                </template>
-                <template #deadline="{item}">
-                    {{ dayjs(item.deadline).fromNow() }}
-                </template>
-                <template #title="{item}">
-                    <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
-                    <span v-else>{{ item.title  }}</span>
-                </template>
-                <template #latest-action="{item}">
-                    {{ interviewStatusToEmoji[item.status] }}
-                </template>
-            </GenericTable>
-        </a-spin>
-    </div>
+        <a-space>
+            <a-button :icon="h(PlusOutlined)" size="small" @click="interviewModalStore.openModal()">Create new job</a-button>
+            <a-button :icon="h(ReloadOutlined)" size="small" @click="interviewStore.fetchInterviews" :loading="interviewStore.isLoading">Refresh</a-button>
+        </a-space>
+        <div class='job-table'>
+            <a-spin :spinning='interviewStore.getLoading'>
+                <GenericTable :headers="headers" :items="interviewStore.getInterviews">
+                    <template #actions="{item}">
+                        <a-button :icon="h(EditOutlined)" size="small" @click="interviewModalStore.openModal(item)">Edit</a-button>
+                    </template>
+                    <template #deadline="{item}">
+                        {{ dayjs(item.deadline).fromNow() }}
+                    </template>
+                    <template #title="{item}">
+                        <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }} <span class="pi pi-link" /></a>
+                        <span v-else>{{ item.title  }}</span>
+                    </template>
+                    <template #latest-action="{item}">
+                        {{ interviewStatusToEmoji[item.status] }}
+                    </template>
+                </GenericTable>
+            </a-spin>
+        </div>
     </div>
     <InterviewModal v-if="interviewModalStore.isOpen" @close="interviewModalStore.closeModal" />
 </template>
@@ -76,11 +70,6 @@ onMounted(() => {
     height: 100%;
 }
 
-.job-url {
-    color: #fff;
-    text-decoration: underline;
-}
-
 a {
     color: #fff;
 }
@@ -88,36 +77,5 @@ a {
 .job-table {
     overflow: auto;
     flex-grow: 1;
-}
-
-.action-btn {
-    color: #818181;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid #818181;
-    padding: 4px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.disabled {
-    cursor: not-allowed;
-}
-
-.action-btn:not(:last-child) {
-    margin-right: 10px;
-}
-
-.action-btn:hover {
-    background-color: #1e1e1e;
-}
-
-.action-btn span:last-child {
-    margin-left: 4px;
-}
-
-.action-btn span:only-child {
-    margin: 0px;
 }
 </style>
