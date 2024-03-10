@@ -4,3 +4,8 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+
+.ant-tabs-content-holder {
+    overflow: scroll;
+}
