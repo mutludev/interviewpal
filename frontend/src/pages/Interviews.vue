@@ -42,6 +42,11 @@ onMounted(() => {
         <div class='job-table'>
             <a-spin :spinning='interviewStore.getLoading'>
                 <GenericTable :headers="headers" :items="interviewStore.getInterviews">
+                    <template #company="{item}">
+                        <img v-if="item.url" :src="`https://www.google.com/s2/favicons?domain=${item.url}`" target="_blank">
+                        <span v-else>🏢</span>
+                        {{ item.company }}
+                    </template>
                     <template #actions="{item}">
                         <a-button :icon="h(EditOutlined)" size="small" @click="interviewModalStore.openModal(item)">Edit</a-button>
                     </template>
