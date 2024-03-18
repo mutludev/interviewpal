@@ -26,7 +26,10 @@
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot1](https://github.com/mutludev/interviewpal/assets/43097444/891471d1-99b2-45a1-a50d-adaf1dc773b5)
+![App Screenshot2](https://github.com/mutludev/interviewpal/assets/43097444/26f34944-03ff-4c95-8708-8c68ac735811)
+![App Screenshot3](https://github.com/mutludev/interviewpal/assets/43097444/eb2dbf21-fa70-418c-b2cb-44d1d14f1d18)
+![App Screenshot4](https://github.com/mutludev/interviewpal/assets/43097444/a3686be6-c469-4caf-b7ac-099e081a7359)
 
 
 ## Run Locally
