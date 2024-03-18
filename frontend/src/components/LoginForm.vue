@@ -34,6 +34,13 @@ async function login(){
     message.error('Invalid credentials')
   }
 }
+
+async function loginDemo() {
+  let response = await useAuthStore().login('demo@demo.com', 'password')
+  if(!response){
+    message.error('Unable to login with demo account, try signing up instead.')
+  } 
+}
 </script>
 
 <template>
@@ -42,6 +49,7 @@ async function login(){
     <input id="email" :class='emailEmpty ? "error" : ""' type="email" v-model='email' ref="emailField" placeholder="Email" />
     <input :class='passwordEmpty ? "error" : ""' type="password" v-model='password' ref="passwordField" v-on:keyup.enter="login" placeholder="Password" />
     <button @click='login' class='login-btn'>Login</button>
+    <button @click="loginDemo" class='login-btn'>Demo Account</button>
   </div>
 </template>
 
