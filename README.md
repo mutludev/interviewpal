@@ -34,8 +34,6 @@
 
 ## Run Locally
 
-Coming Soon...
-
 Clone the project
 
 ```bash
