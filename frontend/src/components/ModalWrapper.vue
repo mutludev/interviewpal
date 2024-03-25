@@ -1,14 +1,14 @@
 <template>
-  <Teleport to='body'>
-  <div class='modal-bg'>
-    <slot></slot>
-  </div>
+  <Teleport to="body">
+    <div class="modal-bg">
+      <slot></slot>
+    </div>
   </Teleport>
 </template>
 
 <style scoped>
 .modal-bg {
-  position: fixed;;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;

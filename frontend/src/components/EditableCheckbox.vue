@@ -5,8 +5,19 @@ defineProps(['value', 'check'])
 
 <template>
   <div class="editable-checkbox">
-    <input type="checkbox" class="checkbox" :checked="check" @click="$emit('update:check', $event.target.checked)">
-    <input type="text" class="input" :value="value" placeholder="Todo" @input="$emit('update:value', $event.target.value)"  />
+    <input
+      type="checkbox"
+      class="checkbox"
+      :checked="check"
+      @click="$emit('update:check', $event.target.checked)"
+    />
+    <input
+      type="text"
+      class="input"
+      :value="value"
+      placeholder="Todo"
+      @input="$emit('update:value', $event.target.value)"
+    />
     <button class="delete" @click="$emit('delete')">
       <delete-outlined />
     </button>
@@ -14,47 +25,47 @@ defineProps(['value', 'check'])
 </template>
 
 <style scoped>
-  .editable-checkbox {
-    display: flex;
-    align-items: center;
-    border: 1px solid #303030;
-    border-radius: 5px;
-  }
-   
-  .checkbox {
-    margin: 5px;
-    height: 20px;
-    aspect-ratio: 1;
-    accent-color: #1b1b1b;
-  }
+.editable-checkbox {
+  display: flex;
+  align-items: center;
+  border: 1px solid #303030;
+  border-radius: 5px;
+}
 
-  .input {
-    width: 100%;
-    padding: 5px;
-    border: none;
-    background-color: inherit;
-    color: #fff;
-  }
+.checkbox {
+  margin: 5px;
+  height: 20px;
+  aspect-ratio: 1;
+  accent-color: #1b1b1b;
+}
 
-  .delete {
-    cursor: pointer;
-    background-color: inherit;
-    border: none;
-    color: #fff;
-    padding: 5px;
-    margin: 5px;
-  }
+.input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background-color: inherit;
+  color: #fff;
+}
 
-  .delete:active {
-    background-color: #303030;
-  }
+.delete {
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+}
 
-  .delete span {
-    color: red;
-    height: 20px;
-    width: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.delete:active {
+  background-color: #303030;
+}
+
+.delete span {
+  color: red;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

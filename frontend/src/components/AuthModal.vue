@@ -2,25 +2,25 @@
 import LoginForm from '@/components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue'
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/AuthStore';
-import ModalWrapper from './ModalWrapper.vue';
+import { useAuthStore } from '@/stores/AuthStore'
+import ModalWrapper from './ModalWrapper.vue'
 const isLogin = ref(true)
 const authStore = useAuthStore()
 </script>
 
 <template>
   <modal-wrapper>
-  <a-spin :spinning='authStore.isLoading'>
-    <div class='modal'>
-    <div class='greeting'>Welcome the Intervio</div>
-    <login-form v-if="isLogin" />
-    <register-form v-else />
+    <a-spin :spinning="authStore.isLoading">
+      <div class="modal">
+        <div class="greeting">Welcome the Intervio</div>
+        <login-form v-if="isLogin" />
+        <register-form v-else />
 
-    <button class='auth-switcher' @click="isLogin = !isLogin">
-      {{ isLogin ? "Don't have an account" : 'Have an account' }}
-    </button>
-  </div>
-  </a-spin>
+        <button class="auth-switcher" @click="isLogin = !isLogin">
+          {{ isLogin ? "Don't have an account" : 'Have an account' }}
+        </button>
+      </div>
+    </a-spin>
   </modal-wrapper>
 </template>
 
@@ -59,6 +59,6 @@ const authStore = useAuthStore()
   color: #ebebeb;
   font-size: 20px;
   font-weight: 600;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 </style>

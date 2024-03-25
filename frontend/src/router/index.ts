@@ -5,29 +5,30 @@ import Main from '@/layouts/Main.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/',
+    {
+      path: '/',
       component: Main,
       children: [
         {
           path: '',
           name: 'Interviews',
           // @ts-ignore
-          component: () => import('@/pages/Interviews.vue'),
+          component: () => import('@/pages/Interviews.vue')
         },
         {
           path: 'documents',
           name: 'Documents',
           // @ts-ignore
-          component: () => import('@/pages/Documents.vue'),
+          component: () => import('@/pages/Documents.vue')
         },
         {
           path: 'me',
           name: 'Me',
           // @ts-ignore
-          component: () => import('@/pages/Me.vue'),
+          component: () => import('@/pages/Me.vue')
         }
       ]
-    },
+    }
   ]
 })
 

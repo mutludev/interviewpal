@@ -1,11 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-
 .ant-tabs-content-holder {
-    overflow: scroll;
+  overflow: scroll;
 }

@@ -9,15 +9,15 @@ const route = useRoute()
 </script>
 
 <template>
-  <div id='main'>
+  <div id="main">
     <sidebar-section />
     <div :class="`content ${sidebar.isOpen ? 'content-collapse' : ''}`">
-      <div class='top' v-if='!sidebar.isOpen'>
-        <sidebar-toggle-button/>
-        <span>{{ route.name || "Intervio" }}</span>
+      <div class="top" v-if="!sidebar.isOpen">
+        <sidebar-toggle-button />
+        <span>{{ route.name || 'Intervio' }}</span>
       </div>
-      <div class='main'>
-        <router-view/>
+      <div class="main">
+        <router-view />
       </div>
     </div>
   </div>
@@ -60,5 +60,4 @@ const route = useRoute()
   display: flex;
   align-items: center;
 }
-
 </style>

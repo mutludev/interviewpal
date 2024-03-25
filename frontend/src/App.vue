@@ -12,7 +12,7 @@ authStore.getUser().finally(() => {
 
 <template>
   <a-config-provider :theme="theme">
-  <router-view/>
-  <AuthModal v-if='!authStore.isLoggedIn && isCheckedAuth'/>
+    <router-view />
+    <AuthModal v-if="!authStore.isLoggedIn && isCheckedAuth" />
   </a-config-provider>
 </template>

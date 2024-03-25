@@ -15,6 +15,4 @@ authStore.getUser().then((res) => {
   {{ user }}
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

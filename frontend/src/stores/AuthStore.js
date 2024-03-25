@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
     async login(email, password) {
       const interviewStore = useInterviewStore()
       this.loading = true
-      try{
+      try {
         const res = await axios.post('/api/user/login', {
           email,
           password
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth', {
         this.user = res.data.user
         interviewStore.fetchInterviews()
         return this.user
-      } catch(err) {
+      } catch (err) {
         return false
       } finally {
         this.loading = false
@@ -33,7 +33,7 @@ export const useAuthStore = defineStore('auth', {
         await axios.post('/api/user/logout')
         interviewStore.clearInterviews()
         await router.push('/')
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       }
     },
@@ -47,7 +47,7 @@ export const useAuthStore = defineStore('auth', {
         })
         this.user = res.data.user
         return this.user
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         this.loading = false
@@ -59,7 +59,7 @@ export const useAuthStore = defineStore('auth', {
         const res = await axios.get('/api/user/')
         this.user = res.data
         return this.user
-      } catch(err) {
+      } catch (err) {
         console.log(err)
       } finally {
         this.loading = false
