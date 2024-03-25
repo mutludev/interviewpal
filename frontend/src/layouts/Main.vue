@@ -52,6 +52,7 @@ const route = useRoute()
   border-radius: 8px;
   padding: 8px;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .content .top {
