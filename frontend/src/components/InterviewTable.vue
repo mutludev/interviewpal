@@ -131,7 +131,7 @@ onMounted(() => {
           <span v-else>{{ item.title }}</span>
         </template>
         <template #latest-action="{ item }">
-          {{ statusOptions.find((i) => i.name === item.status).text }}
+          {{ statusOptions.find((i) => i.name === item.status)?.text }}
         </template>
       </generic-table>
     </a-spin>
