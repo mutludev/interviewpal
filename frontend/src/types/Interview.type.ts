@@ -1,6 +1,7 @@
 export type Todo = {
   value: string
   check: boolean
+  deadline: string
 }
 
 export type Interview = {
