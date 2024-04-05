@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { type Interview } from '@/types/Interview.type'
+
 export const useInterviewStore = defineStore('interview', {
   state: () => ({
-    interviews: [],
+    interviews: [] as Interview[],
     isLoading: false
   }),
   actions: {
@@ -20,26 +22,27 @@ export const useInterviewStore = defineStore('interview', {
     clearInterviews() {
       this.interviews = []
     },
-    async addInterview(interview) {
+    async addInterview(interview: Interview) {
       try {
-        const response = await axios.post('/api/job/', interview)
-        this.fetchInterviews()
+        const response = (await axios.post('/api/job/', interview)) as { data: Interview }
+        this.interviews.push(response.data)
       } catch (error) {
         console.log(error)
       }
     },
-    async updateInterview(interview) {
+    async updateInterview(interview: Interview) {
       try {
-        const response = await axios.put(`/api/job/${interview._id}/`, interview)
-        this.fetchInterviews()
+        await axios.put(`/api/job/${interview._id}/`, interview)
+        const interviewIndex = this.interviews.findIndex((i) => i._id === interview._id)
+        this.interviews[interviewIndex] = interview
       } catch (error) {
         console.log(error)
       }
     },
-    async deleteInterview(id) {
+    async deleteInterview(id: string) {
       try {
-        const response = await axios.delete(`/api/job/${id}/`)
-        this.fetchInterviews()
+        await axios.delete(`/api/job/${id}/`)
+        this.interviews = this.interviews.filter((i) => i._id !== id)
       } catch (error) {
         console.log(error)
       }
