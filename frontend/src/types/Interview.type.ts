@@ -1,3 +1,8 @@
+export type Todo = {
+  value: string
+  check: boolean
+}
+
 export type Interview = {
   _id: string
   company: string
@@ -6,4 +11,6 @@ export type Interview = {
   url: string
   description: string
   notes: string
+  deadline: string
+  todos: Todo[]
 }
