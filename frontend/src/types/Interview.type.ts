@@ -1,8 +1,9 @@
 export type Interview = {
   _id: string
   company: string
-  position: string
-  date: string
-  status: string
+  title: string
+  status: 'wishlist' | 'applied' | 'rejected' | 'accepted'
+  url: string
+  description: string
   notes: string
 }
