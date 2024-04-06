@@ -2,6 +2,7 @@
 import { useSidebarStore } from '@/stores/SidebarStore'
 import { useAuthStore } from '@/stores/AuthStore'
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
+import { sidebarLinks } from '@/config/sidebarLinks'
 
 let sidebar = useSidebarStore()
 let auth = useAuthStore()
@@ -26,8 +27,9 @@ sidebar.$subscribe((modify, state) => {
     </div>
 
     <ul class="links">
-      <li><router-link to="/">Interviews</router-link></li>
-      <li><router-link to="/documents">Documents</router-link></li>
+      <li v-for="(link, i) in sidebarLinks" :key="i">
+        <router-link :to="link.to">{{ link.label }}</router-link>
+      </li>
     </ul>
 
     <div class="spacer" />
