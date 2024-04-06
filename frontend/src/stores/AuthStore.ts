@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', {
     loading: false
   }),
   actions: {
-    async login(email, password) {
+    async login(email: string, password: string) {
       const interviewStore = useInterviewStore()
       this.loading = true
       try {
@@ -38,7 +38,7 @@ export const useAuthStore = defineStore('auth', {
         console.log(err)
       }
     },
-    async register(username, email, password) {
+    async register(username: string, email: string, password: string) {
       this.loading = true
       try {
         const res = await axios.post(getEndpoint('register'), {
