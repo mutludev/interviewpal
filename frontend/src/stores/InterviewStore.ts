@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { type Interview } from '@/types/Interview.type'
+import getEndpoint from '@/config/endpoints'
 
 export const useInterviewStore = defineStore('interview', {
   state: () => ({
@@ -11,7 +12,7 @@ export const useInterviewStore = defineStore('interview', {
     async fetchInterviews() {
       this.isLoading = true
       try {
-        const response = await axios.get('/api/job/')
+        const response = await axios.get(getEndpoint('getInterviews'))
         this.interviews = response.data
       } catch (error) {
         console.log(error)
@@ -24,7 +25,9 @@ export const useInterviewStore = defineStore('interview', {
     },
     async addInterview(interview: Interview) {
       try {
-        const response = (await axios.post('/api/job/', interview)) as { data: Interview }
+        const response = (await axios.post(getEndpoint('addInterview'), interview)) as {
+          data: Interview
+        }
         this.interviews.push(response.data)
       } catch (error) {
         console.log(error)
@@ -32,7 +35,7 @@ export const useInterviewStore = defineStore('interview', {
     },
     async updateInterview(interview: Interview) {
       try {
-        await axios.put(`/api/job/${interview._id}/`, interview)
+        await axios.put(getEndpoint('updateInterview', { id: interview._id }), interview)
         const interviewIndex = this.interviews.findIndex((i) => i._id === interview._id)
         this.interviews[interviewIndex] = interview
       } catch (error) {
@@ -41,7 +44,7 @@ export const useInterviewStore = defineStore('interview', {
     },
     async deleteInterview(id: string) {
       try {
-        await axios.delete(`/api/job/${id}/`)
+        await axios.delete(getEndpoint('deleteInterview', { id }))
         this.interviews = this.interviews.filter((i) => i._id !== id)
       } catch (error) {
         console.log(error)

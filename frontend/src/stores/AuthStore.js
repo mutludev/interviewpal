@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '@/router'
 import { useInterviewStore } from '@/stores/InterviewStore'
+import getEndpoint from '@/config/endpoints'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -13,7 +14,7 @@ export const useAuthStore = defineStore('auth', {
       const interviewStore = useInterviewStore()
       this.loading = true
       try {
-        const res = await axios.post('/api/user/login', {
+        const res = await axios.post(getEndpoint('login'), {
           email,
           password
         })
@@ -30,7 +31,7 @@ export const useAuthStore = defineStore('auth', {
       const interviewStore = useInterviewStore()
       this.user = null
       try {
-        await axios.post('/api/user/logout')
+        await axios.post(getEndpoint('logout'))
         interviewStore.clearInterviews()
         await router.push('/')
       } catch (err) {
@@ -40,7 +41,7 @@ export const useAuthStore = defineStore('auth', {
     async register(username, email, password) {
       this.loading = true
       try {
-        const res = await axios.post('/api/user/', {
+        const res = await axios.post(getEndpoint('register'), {
           username,
           email,
           password
@@ -56,7 +57,7 @@ export const useAuthStore = defineStore('auth', {
     async getUser() {
       this.loading = true
       try {
-        const res = await axios.get('/api/user/')
+        const res = await axios.get(getEndpoint('user'))
         this.user = res.data
         return this.user
       } catch (err) {
