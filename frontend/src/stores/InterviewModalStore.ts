@@ -10,7 +10,7 @@ export const useInterviewModalStore = defineStore({
   actions: {
     openModal(content: Interview) {
       this.isOpen = true
-      this.content = content
+      this.content = JSON.parse(JSON.stringify(content))
     },
     closeModal() {
       this.isOpen = false
@@ -18,7 +18,6 @@ export const useInterviewModalStore = defineStore({
     }
   },
   getters: {
-    getIsOpen: (state) => state.isOpen,
-    getContent: (state) => state.content
+    getIsOpen: (state) => state.isOpen
   }
 })
