@@ -1,7 +1,12 @@
 <script setup>
 import { onMounted, h, ref } from 'vue'
 import GenericTable from '@/components/GenericTable.vue'
-import { EditOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import {
+  EditOutlined,
+  PlusOutlined,
+  ReloadOutlined,
+  FolderOpenOutlined
+} from '@ant-design/icons-vue'
 
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -79,6 +84,11 @@ function toggleArchived() {
   archivedFilter.value = !archivedFilter.value
 }
 
+function toggleArchive(item) {
+  item.archived = !item.archived
+  interviewStore.updateInterview(item)
+}
+
 onMounted(() => {
   interviewStore.fetchInterviews()
 })
@@ -125,12 +135,17 @@ onMounted(() => {
           {{ item.company }}
         </template>
         <template #actions="{ item }">
-          <a-button
-            :icon="h(EditOutlined)"
-            size="small"
-            @click="interviewModalStore.openModal(item)"
-            >Edit</a-button
-          >
+          <div class="actions">
+            <a-button
+              :icon="h(EditOutlined)"
+              size="small"
+              @click="interviewModalStore.openModal(item)"
+              >Edit</a-button
+            >
+            <a-button :icon="h(FolderOpenOutlined)" size="small" @click="toggleArchive(item)">{{
+              item.archived ? 'Unarchive' : 'Archive'
+            }}</a-button>
+          </div>
         </template>
         <template #deadline="{ item }">
           {{ dayjs(item.deadline).fromNow() }}
@@ -196,5 +211,10 @@ a {
 
 button.archive {
   width: 120px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
 }
 </style>
