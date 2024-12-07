@@ -25,6 +25,7 @@ const jobSchema = new mongoose.Schema({
       deadline: Date,
     },
   ],
+  archived: Boolean,
 });
 
 module.exports = jobSchema;
