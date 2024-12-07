@@ -4,6 +4,8 @@ import EditableCheckbox from './EditableCheckbox.vue'
 import { ref, defineEmits } from 'vue'
 import { DatePicker } from 'ant-design-vue'
 import dayjs from 'dayjs'
+import { Icon } from '@iconify/vue'
+
 const interviewStatusOptions = [
   { label: 'Wishlist⭐️', value: 'wishlist' },
   { label: 'Applied👏🏻', value: 'applied' },
@@ -53,18 +55,30 @@ function addNewTodo() {
     data.value.todos = [{ value: '', check: false }]
   }
 }
+
+function toggleArchive() {
+  data.value.archived = !data.value.archived
+}
 </script>
 
 <template>
   <modal-wrapper>
     <div class="interview-modal">
       <div class="header">
-        <a-select
-          v-model:value="data.status"
-          style="width: 120px"
-          :options="interviewStatusOptions"
-          placeholder="Status"
-        ></a-select>
+        <div class="section">
+          <a-select
+            v-model:value="data.status"
+            style="width: 120px"
+            :options="interviewStatusOptions"
+            placeholder="Status"
+          />
+          <a-button @click="toggleArchive">
+            <icon
+              :icon="data.archived ? 'solar:archive-check-linear' : 'solar:archive-outline'"
+              height="24"
+            />
+          </a-button>
+        </div>
         <a-input class="company" v-model:value="data.company" placeholder="Company" />
         <a-input class="title" v-model:value="data.title" placeholder="Job Title" />
       </div>
@@ -176,5 +190,18 @@ function addNewTodo() {
 
 .date-picker {
   min-width: 200px;
+}
+
+.header > .section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > .section > button {
+  line-height: 0;
+  aspect-ratio: 1;
+  height: 40px;
+  padding: 0;
 }
 </style>
