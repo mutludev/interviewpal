@@ -52,6 +52,7 @@ function statusToStyleAdapter(status) {
 }
 
 const statusFilter = ref(new Set())
+const archivedFilter = ref(false)
 
 function changeStatus(name) {
   console.log(name)
@@ -63,12 +64,19 @@ function changeStatus(name) {
 }
 
 function filterItems(items) {
+  if (!archivedFilter.value) {
+    items = items.filter((item) => !item.archived)
+  }
   if (statusFilter.value.size == 0) {
     return items
   }
   return items.filter((item) => {
     return statusFilter.value.has(item.status)
   })
+}
+
+function toggleArchived() {
+  archivedFilter.value = !archivedFilter.value
 }
 
 onMounted(() => {
@@ -88,6 +96,9 @@ onMounted(() => {
       :loading="interviewStore.isLoading"
       >Refresh</a-button
     >
+    <a-button class="archive" size="small" @click="toggleArchived">
+      {{ archivedFilter ? 'Hide archived' : 'Show Archived' }}
+    </a-button>
     <div class="chips">
       <div
         class="chip"
@@ -131,7 +142,9 @@ onMounted(() => {
           <span v-else>{{ item.title }}</span>
         </template>
         <template #latest-action="{ item }">
-          {{ statusOptions.find((i) => i.name === item.status)?.text }}
+          {{
+            item.archived ? 'Archived📦' : statusOptions.find((i) => i.name === item.status)?.text
+          }}
         </template>
       </generic-table>
     </a-spin>
@@ -179,5 +192,9 @@ a {
 .chip.active {
   background-color: var(--active-color);
   color: white;
+}
+
+button.archive {
+  width: 120px;
 }
 </style>
