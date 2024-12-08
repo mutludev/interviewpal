@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, h, ref } from 'vue'
 import GenericTable from '@/components/GenericTable.vue'
 import {
@@ -13,9 +13,8 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 import { useInterviewStore } from '@/stores/InterviewStore'
-import { useInterviewModalStore } from '@/stores/InterviewModalStore'
+import InterviewModal from "@/components/InterviewModal.vue";
 const interviewStore = useInterviewStore()
-const interviewModalStore = useInterviewModalStore()
 
 const headers = [
   { text: 'Company', value: 'company' },
@@ -58,6 +57,22 @@ function statusToStyleAdapter(status) {
 
 const statusFilter = ref(new Set())
 const archivedFilter = ref(false)
+const isInterviewModalOpen = ref(false)
+const interviewModalContent = ref(null)
+
+function openNewModal() {
+  isInterviewModalOpen.value = true
+  interviewModalContent.value = null
+}
+
+function openEditModal(item) {
+  isInterviewModalOpen.value = true
+  interviewModalContent.value = item
+}
+
+function closeModal() {
+  isInterviewModalOpen.value = false
+}
 
 function changeStatus(name) {
   console.log(name)
@@ -96,7 +111,7 @@ onMounted(() => {
 
 <template>
   <div class="toolbar">
-    <a-button :icon="h(PlusOutlined)" size="small" @click="interviewModalStore.openModal()"
+    <a-button :icon="h(PlusOutlined)" size="small" @click="openNewModal"
       >Create new job</a-button
     >
     <a-button
@@ -139,7 +154,7 @@ onMounted(() => {
             <a-button
               :icon="h(EditOutlined)"
               size="small"
-              @click="interviewModalStore.openModal(item)"
+              @click="openEditModal(item)"
               >Edit</a-button
             >
             <a-button :icon="h(FolderOpenOutlined)" size="small" @click="toggleArchive(item)">{{
@@ -164,6 +179,7 @@ onMounted(() => {
       </generic-table>
     </a-spin>
   </div>
+  <interview-modal v-if="isInterviewModalOpen" @close="closeModal" :content="interviewModalContent" />
 </template>
 
 <style scoped>

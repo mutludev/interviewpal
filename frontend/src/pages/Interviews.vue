@@ -1,8 +1,5 @@
 <script setup>
-import InterviewModal from '@/components/InterviewModal.vue'
 import interviewTable from '@/components/InterviewTable.vue'
-import { useInterviewModalStore } from '@/stores/InterviewModalStore'
-const interviewModalStore = useInterviewModalStore()
 </script>
 
 <template>
@@ -11,8 +8,6 @@ const interviewModalStore = useInterviewModalStore()
       <interview-table />
     </div>
   </div>
-
-  <InterviewModal v-if="interviewModalStore.isOpen" @close="interviewModalStore.closeModal" />
 </template>
 
 <style scoped>
