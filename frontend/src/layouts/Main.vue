@@ -1,19 +1,23 @@
-<script setup>
+<script setup lang="ts">
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
-import { useSidebarStore } from '@/stores/SidebarStore'
-import SidebarSection from '@/layouts/SidebarSection.vue'
+import SidebarSection from '@/layouts/SidebarSection.vue';
 import { useRoute } from 'vue-router'
+import { ref } from "vue";
 
-const sidebar = useSidebarStore()
 const route = useRoute()
+const isSidebarOpen = ref(false)
+
+function toggleSidebar() {
+  isSidebarOpen.value = !isSidebarOpen.value
+}
 </script>
 
 <template>
   <div id="main">
-    <sidebar-section />
-    <div :class="`content ${sidebar.isOpen ? 'content-collapse' : ''}`">
-      <div class="top" v-if="!sidebar.isOpen">
-        <sidebar-toggle-button />
+    <sidebar-section :open="isSidebarOpen" @close="toggleSidebar" />
+    <div class="content" :class="{'content-collapse': isSidebarOpen}">
+      <div class="top" v-if="!isSidebarOpen">
+        <sidebar-toggle-button @toggle="toggleSidebar" :open="isSidebarOpen" />
         <span>{{ route.name || 'Intervio' }}</span>
       </div>
       <div class="main">
@@ -58,6 +62,7 @@ const route = useRoute()
 .content .top {
   padding-bottom: 8px;
   display: flex;
+  gap: 4px;
   align-items: center;
 }
 </style>

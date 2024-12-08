@@ -1,40 +1,36 @@
-<script setup>
-import { useSidebarStore } from '@/stores/SidebarStore'
+<script setup lang="ts">
 import { useAuthStore } from '@/stores/AuthStore'
 import SidebarToggleButton from '@/components/SidebarToggleButton.vue'
 import { sidebarLinks } from '@/config/sidebarLinks'
 
-let sidebar = useSidebarStore()
+defineProps(['open'])
+const emit = defineEmits(['close'])
+
 let auth = useAuthStore()
 
-sidebar.$subscribe((modify, state) => {
-  if (state.open && window.innerWidth <= 650) {
-    const aTags = document.querySelectorAll('#sidebar a')
-    aTags.forEach((a) => {
-      a.addEventListener('click', () => {
-        sidebar.close()
-      })
-    })
+function handleButtonClick() {
+  if(window.innerWidth <= 650) {
+    emit('close')
   }
-})
+}
 </script>
 
 <template>
-  <div id="sidebar" v-if="sidebar.isOpen">
+  <div id="sidebar" v-if="open">
     <div class="header">
-      <router-link class="company-text" to="/">Interview Tracker</router-link>
-      <sidebar-toggle-button />
+      <router-link @click="handleButtonClick" class="company-text" to="/">Interview Tracker</router-link>
+      <sidebar-toggle-button :open="open" @toggle="$emit('close')" />
     </div>
 
     <ul class="links">
       <li v-for="(link, i) in sidebarLinks" :key="i">
-        <router-link :to="link.to">{{ link.label }}</router-link>
+        <router-link @click="handleButtonClick" :to="link.to">{{ link.label }}</router-link>
       </li>
     </ul>
 
     <div class="spacer" />
     <ul class="links">
-      <li><router-link to="/me">My Account</router-link></li>
+      <li><router-link @click="handleButtonClick" to="/me">My Account</router-link></li>
       <li><a href="#" @click.prevent="auth.logout">Logout</a></li>
     </ul>
   </div>
@@ -56,7 +52,7 @@ sidebar.$subscribe((modify, state) => {
 
 @media screen and (max-width: 650px) {
   #sidebar {
-    min-width: none;
+    min-width: auto;
     width: 100%;
   }
 }
