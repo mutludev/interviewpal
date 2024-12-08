@@ -1,17 +1,18 @@
-<script setup>
-import { useSidebarStore } from '@/stores/SidebarStore'
-const sidebar = useSidebarStore()
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+defineProps(['open'])
+defineEmits(['toggle'])
 </script>
 
 <template>
-  <button class="sidebar-toggle-button" @click="sidebar.toggle">
-    <span v-if="sidebar.isOpen" class="pi pi-arrow-circle-left sidebar-icon" />
-    <span v-else class="pi pi-arrow-circle-right sidebar-icon" />
+  <button @click="$emit('toggle')">
+    <icon v-if="open" icon="mingcute:arrow-left-fill"/>
+    <icon v-else icon="mingcute:arrow-right-fill" />
   </button>
 </template>
 
 <style scoped>
-.sidebar-toggle-button {
+button {
   border: none;
   border-radius: 4px;
   background: inherit;
@@ -22,11 +23,11 @@ const sidebar = useSidebarStore()
   align-items: center;
   justify-content: center;
 }
-.sidebar-toggle-button:hover {
+button:hover {
   background-color: #222222;
 }
 
-.sidebar-icon {
-  font-size: 1rem;
+svg {
+  font-size: 1.2rem;
 }
 </style>
