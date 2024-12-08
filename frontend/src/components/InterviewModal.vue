@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ModalWrapper from './ModalWrapper.vue'
 import EditableCheckbox from './EditableCheckbox.vue'
 import { ref, defineEmits } from 'vue'
@@ -14,13 +14,12 @@ const interviewStatusOptions = [
 ]
 
 import { useInterviewStore } from '@/stores/InterviewStore'
-import { useInterviewModalStore } from '@/stores/InterviewModalStore'
-const interviewModalStore = useInterviewModalStore()
 const interviewStore = useInterviewStore()
 
 const emit = defineEmits(['close'])
+const props = defineProps(['content'])
 
-const data = ref(interviewModalStore.content ? interviewModalStore.content : {})
+const data = ref(props.content || {})
 const saving = ref(false)
 const activeKey = ref('1')
 let deadline = ref(dayjs(data.value.deadline))
@@ -37,15 +36,15 @@ async function save() {
         ...data.value
       })
     }
-    interviewModalStore.closeModal()
+    emit('close')
   } finally {
     saving.value = false
   }
 }
 
-async function deleteInterview(id) {
+async function deleteInterview(id: string) {
   await interviewStore.deleteInterview(id)
-  interviewModalStore.closeModal()
+  emit('close')
 }
 
 function addNewTodo() {
@@ -110,7 +109,7 @@ function toggleArchive() {
       </a-tabs>
       <div class="footer">
         <a-popconfirm
-          v-if="interviewModalStore.content != undefined"
+          v-if="content != undefined"
           title="Delete?"
           @confirm="deleteInterview(data._id)"
         >
